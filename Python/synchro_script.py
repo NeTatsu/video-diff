@@ -413,7 +413,7 @@ def QuadTreeDecision():
     common.DebugPrint("QuadTreeDecision(): r_path = %s" % r_path);
     common.DebugPrint("QuadTreeDecision(): q_path = %s" % q_path);
     """
-    #global harlocsQ, harlocsR
+    global harlocsQ, harlocsR
 
     common.DebugPrint("Entered QuadTreeDecision().");
 
@@ -633,7 +633,8 @@ def TemporalAlignment(captureQ, captureR):
             #common.DebugPrint("TemporalAlignment(): harlocsR.nbytes = %s" % str(harlocsR.nbytes));
 
 
-    if config.PREPROCESS_REFERENCE_VIDEO_ONLY == False:
+    # if config.PREPROCESS_REFERENCE_VIDEO_ONLY == False:
+    if config.PREPROCESS_REFERENCE_VIDEO_ONLY == False or config.PREPROCESS_REFERENCE_VIDEO_ONLY == "do_all":
         # We compute and Store in files the multi-scale Harris features of the query video
         """
         Note: if the "harloc" files exist, load directly the features from
@@ -655,7 +656,8 @@ def TemporalAlignment(captureQ, captureR):
         #res = QuadTreeDecision(captureQ, captureR);
         res = QuadTreeDecision();
     else:
-	res = None
+        # res = None
+        res = QuadTreeDecision() #added by watanabe
 
     totalT2 = float(cv2.getTickCount());
     myTime = (totalT2 - totalT1) / cv2.getTickFrequency();

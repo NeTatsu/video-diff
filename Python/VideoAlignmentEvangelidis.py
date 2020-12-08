@@ -22,7 +22,7 @@ def AlignVideos(captureQ, captureR):
         crossref = synchro_script.TemporalAlignment(captureQ, captureR);
 
     if config.PREPROCESS_REFERENCE_VIDEO_ONLY == True:
-	return
+        return
 
     print("VideoAlignmentEvangelidis.AlignVideos(): crossref = %s" % str(crossref));
 

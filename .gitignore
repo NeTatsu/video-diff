@@ -6,5 +6,6 @@
 env
 stdout*
 *.txt
+!.gitignore.txt
 Videos
 target2_Videos

@@ -6,7 +6,7 @@ from numpy import linalg as npla
 import sys
 import scipy.interpolate
 import scipy.sparse
-import scipy.weave
+import weave
 import unittest
 
 import common
@@ -427,7 +427,7 @@ def ordfilt2(A, order, domain):
 
     #common.DebugPrint("Matlab.ordfilt2(): CPP_code = %s" % CPP_code);
 
-    scipy.weave.inline(CPP_code, ['A', 'res', 'domain']);
+    weave.inline(CPP_code, ['A', 'res', 'domain']);
 
     #common.DebugPrint("res[1, 0] = %d" % res[1, 0]);
     #common.DebugPrint("\n\nres = %s" % str(res));
@@ -990,8 +990,8 @@ def interp2(V, Xq, Yq, interpolationMethod="linear"):
 
     #common.DebugPrint("Matlab.interp2(): CPP_code = %s" % CPP_code);
 
-    #scipy.weave.inline(CPP_prefix + CPP_code2, ["V", "Xq", "Yq", "res"]);
-    scipy.weave.inline(CPP_code, ["V", "Xq", "Yq", "res"]);
+    #weave.inline(CPP_prefix + CPP_code2, ["V", "Xq", "Yq", "res"]);
+    weave.inline(CPP_code, ["V", "Xq", "Yq", "res"]);
 
 
     #common.DebugPrint("res[1, 0] = %d" % res[1, 0]);

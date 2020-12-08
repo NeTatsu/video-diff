@@ -2,8 +2,8 @@ PREPROCESS_REFERENCE_VIDEO_ONLY = True
 #PREPROCESS_REFERENCE_VIDEO_ONLY = False
 #PREPROCESS_REFERENCE_VIDEO_ONLY = "do_all" # I guess this should execute the entire algorithm in one run
 
-OCV_OLD_PY_BINDINGS = True # This is to use the Python bindings to the OpenCV 2.x APIs (still has Python bindings to cv::Mat; does NOT use NumPy that much)
-#OCV_OLD_PY_BINDINGS = False # This is to use the new slightly different APIs from latest OpenCV 3.0 (uses NumPy)
+#OCV_OLD_PY_BINDINGS = True # This is to use the Python bindings to the OpenCV 2.x APIs (still has Python bindings to cv::Mat; does NOT use NumPy that much)
+OCV_OLD_PY_BINDINGS = False # This is to use the new slightly different APIs from latest OpenCV 3.0 (uses NumPy)
 
 USE_GUI = False
 #USE_GUI = True
@@ -97,7 +97,7 @@ USE_MULTITHREADING = False
 numProcesses = 3; #2;
 
 VISUAL_DIFF_FRAMES = False
-#VISUAL_DIFF_FRAMES = True
+# VISUAL_DIFF_FRAMES = True
 
 # We filter out the single-pixel differences between the 2 frames that are very small in colour
 MEANINGFUL_DIFF_THRESHOLD = 30; #90; #30

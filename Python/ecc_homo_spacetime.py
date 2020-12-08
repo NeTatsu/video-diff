@@ -35,7 +35,7 @@ import os
 import math
 import numpy as np
 from numpy import linalg as npla
-import scipy.weave
+import weave
 import sys
 
 import rcdtype
@@ -609,7 +609,7 @@ def hessian_scipy(VI_dW_dp, N_p, w):
     typedef double myDbl;
     """ + CPP_code.replace("double", "float");
 
-    scipy.weave.inline(CPP_code, ["VI_dW_dp", "N_p", "w", "H"]);
+    weave.inline(CPP_code, ["VI_dW_dp", "N_p", "w", "H"]);
 
     #common.DebugPrint("res[1, 0] = %d" % res[1, 0]);
     #common.DebugPrint("\n\nres = %s" % str(res));
@@ -809,7 +809,7 @@ def short_time_seq(r_capture, index, nof, imres, imformat):
         ValueError: operands could not be broadcast together with
             shapes (240,320) (240,320,3).
         """
-        out[:, :, i + (nof + 1) / 2 - 1] = MyImageRead(r_capture, index + i);
+        out[:, :, i + (nof + 1) / 2 - 1] = MyImageRead(r_capture, index + i); #-1(==nof-1), 0, ..., nof-2
 
         if common.MY_DEBUG_STDOUT:
             common.DebugPrint( \
@@ -3150,6 +3150,12 @@ def ecc_homo_spacetime(img_index, tmplt_index, p_init, t0, n_iters, levels, \
                                             str(config.VISUAL_DIFF_FRAMES));
 
         #xxx(:,:,2)=wout;
+        # xxxcopy=np.array(xxx.copy(), dtype=np.uint8)
+        # xxxcopy=cv2.cvtColor(xxxcopy, cv2.COLOR_BGR2GRAY)
+        # xxxcopy-=wout.astype(np.uint8)
+        # xxxcopy[xxxcopy<0]=0
+        # cv2.imwrite(o_path + ("%.6d_difftest" % tmplt_index) + imformat, xxxcopy.astype(int));
+        # cv2.imwrite(o_path + ("%.4dref" % tmplt_index) + imformat, wout.astype(int));
         if config.VISUAL_DIFF_FRAMES == False:
             xxx[:, :, 1] = wout; # This is the original behavior
 
@@ -3405,10 +3411,10 @@ def ecc_homo_spacetime(img_index, tmplt_index, p_init, t0, n_iters, levels, \
                             str(res[2][0]));
 
                 cv2.imwrite(o_path + ("%.6d_good_diff7_res_0" % tmplt_index) + imformat, \
-                                np.array(res[0]));
+                                np.array(threshImg));
 
-                contours = res[1];
-                hierarchy = res[2];
+                contours = res[0];
+                hierarchy = res[1];
 
                 colorC = 255;
                 meaningfulContours = 0;

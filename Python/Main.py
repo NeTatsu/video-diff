@@ -106,22 +106,22 @@ if __name__ == '__main__':
         CV_CPU_POPCNT - POPCOUNT
         CV_CPU_AVX - AVX
     """
-    if config.OCV_OLD_PY_BINDINGS == False:
-        featDict = {cv2.CPU_AVX: "AVX",
-                cv2.CPU_MMX: "MMX",
-                cv2.CPU_NEON: "NEON",
-                cv2.CPU_POPCNT: "POPCNT",
-                cv2.CPU_SSE: "SSE",
-                cv2.CPU_SSE2: "SSE2",
-                cv2.CPU_SSE3: "SSE3",
-                cv2.CPU_SSE4_1: "SSE4.1",
-                cv2.CPU_SSE4_2: "SSE4.2",
-                cv2.CPU_SSSE3: "SSSE3"};
-
-        for feat in featDict:
-            res = cv2.checkHardwareSupport(feat);
-            print("%s = %d" % (featDict[feat], res));
-        #cv2.setUseOptimized(onoff)!!!!
+#    if config.OCV_OLD_PY_BINDINGS == False:
+#        featDict = {cv2.CPU_AVX: "AVX",
+#                cv2.CPU_MMX: "MMX",
+#                cv2.CPU_NEON: "NEON",
+#                cv2.CPU_POPCNT: "POPCNT",
+#                cv2.CPU_SSE: "SSE",
+#                cv2.CPU_SSE2: "SSE2",
+#                cv2.CPU_SSE3: "SSE3",
+#                cv2.CPU_SSE4_1: "SSE4.1",
+#                cv2.CPU_SSE4_2: "SSE4.2",
+#                cv2.CPU_SSSE3: "SSSE3"};
+#
+#        for feat in featDict:
+#            res = cv2.checkHardwareSupport(feat);
+#            print("%s = %d" % (featDict[feat], res));
+#        #cv2.setUseOptimized(onoff)!!!!
 
     # "Returns the number of logical CPUs available for the process."
     common.DebugPrint("cv2.getNumberOfCPUs() (#logical CPUs) is %s" % str(cv2.getNumberOfCPUs()));

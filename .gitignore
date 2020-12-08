@@ -1,4 +1,10 @@
-.npz
-.avi
-.mp4
-
+*.npz
+*.avi
+*.mp4
+*.pyc
+.vscode
+env
+stdout*
+*.txt
+Videos
+target2_Videos
